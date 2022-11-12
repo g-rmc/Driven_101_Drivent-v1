@@ -55,7 +55,7 @@ async function createOrUpdateEnrollmentWithAddress(params: CreateOrUpdateEnrollm
 
   const validateCEP = await enrollmentsService.getAddressFromCEP(address.cep);
   if (validateCEP.erro) {
-    throw requestError(200, "invalid CEP");
+    throw requestError(400, "invalid CEP");
   }
   const newEnrollment = await enrollmentRepository.upsert(params.userId, enrollment, exclude(enrollment, "userId"));
 
